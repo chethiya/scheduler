@@ -40,6 +40,15 @@ Scheduler.addEvent 'event_weekly',
  ->
   console.log 'called weekly'
 
-
+Scheduler.addEvent 'event_monthly',
+ {
+  type: 'monthly'
+  options:
+   date: 6
+   hour: 23
+   minute: 24
+ }
+ ->
+  console.log 'called monthly'
 
 Scheduler.start()
