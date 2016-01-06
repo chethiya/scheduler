@@ -2,7 +2,7 @@ Files = require './files'
 Types = {}
 (require './hourly') Types
 (require './interval') Types
-#(require './daily') Types
+(require './daily') Types
 #(require './weekly') Types
 
 DEFAULT_CHECK_INTERVAL = 30000 # 30s

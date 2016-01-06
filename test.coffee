@@ -14,10 +14,20 @@ Scheduler.addEvent 'event2',
  {
   type: 'hourly'
   options:
-   minute: 8
+   minute: 38
  }
  ->
   console.log 'called hourly'
+
+Scheduler.addEvent 'event_daily',
+ {
+  type: 'daily'
+  options:
+   hour: 22
+   minute: 42
+ }
+ ->
+  console.log 'called daily'
 
 
 Scheduler.start()
