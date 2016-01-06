@@ -29,5 +29,17 @@ Scheduler.addEvent 'event_daily',
  ->
   console.log 'called daily'
 
+Scheduler.addEvent 'event_weekly',
+ {
+  type: 'weekly'
+  options:
+   day: 'wed'
+   hour: 23
+   minute: 0
+ }
+ ->
+  console.log 'called weekly'
+
+
 
 Scheduler.start()
