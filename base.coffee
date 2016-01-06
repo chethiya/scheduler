@@ -27,6 +27,8 @@ class SchedulerBase extends Base
    else
     @last = @_lastTime()
     @gap = next - @last
+   if not @key?
+    @key = @_key()
 
  _key: ->
   throw new Error 'Sheduler::_key() is not implemented'
