@@ -1,6 +1,6 @@
-ClassBase = require './class_base'
+Base = require './weya/base'
 
-class SchedulerBase extends ClassBase
+class SchedulerBase extends Base
  @initialize (@id, @options, @handler, @timezone, @files, @isDone) ->
   @type = @options.type
   @timeOffset = (new Date()).getTimezoneOffset() * 60 * 1000 + @timezone
