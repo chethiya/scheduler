@@ -5,13 +5,7 @@ HOUR = 60 * 60 * 1000
 class HourlyScheduler extends Base
  @extend()
 
- @initialize ->
-  if @key? # scheduled time has been chaged
-   if @key isnt @min
-    next = @_nextTime()
-    @last = @_lastTime()
-    @gap = next - @last
-    @key = @min
+ _key: -> @min
 
  _parseOptions: ->
   @min = parseInt @opt.minute

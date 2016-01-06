@@ -18,9 +18,18 @@ class SchedulerBase extends Base
     @last = times.last
     @gap = times.gap
     @key = times.key
+    k = @_key()
+    if @key isnt k
+     next = @_nextTime()
+     @last = @_lastTime()
+     @gap = next - @last
+     @key = k
    else
     @last = @_lastTime()
     @gap = next - @last
+
+ _key: ->
+  throw new Error 'Sheduler::_key() is not implemented'
 
  _nextTime: ->
   throw new Error 'Sheduler::_nextTime() is not implemented'
