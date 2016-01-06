@@ -5,9 +5,9 @@ Types = {}
 #(require './daily') Types
 #(require './weekly') Types
 
-class Scheduler
+DEFAULT_CHECK_INTERVAL = 30000 # 30s
 
- DEFAULT_CHECK_INTERVAL = 5000 #30000 # 30s
+class Scheduler
  constructor: (timezoneHours, @dir, @interval) ->
   @timezone = timezoneHours * 60 * 60 * 1000
   @interval ?= DEFAULT_CHECK_INTERVAL

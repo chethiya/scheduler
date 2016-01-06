@@ -1,6 +1,6 @@
 Scheduler = require './scheduler'
 debugger
-Scheduler = new Scheduler +5.5, './'
+Scheduler = new Scheduler +5.5, './', 5000
 Scheduler.addEvent 'event1',
  {
   type: 'interval'
@@ -14,7 +14,7 @@ Scheduler.addEvent 'event2',
  {
   type: 'hourly'
   options:
-   minute: 49
+   minute: 8
  }
  ->
   console.log 'called hourly'
