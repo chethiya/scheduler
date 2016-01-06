@@ -4,6 +4,15 @@ HOUR = 60 * 60 * 1000
 
 class HourlyScheduler extends Base
  @extend()
+
+ @initialize ->
+  if @key? # scheduled time has been chaged
+   if @key isnt @min
+    next = @_nextTime()
+    @last = @_lastTime()
+    @gap = next - @last
+    @key = @min
+
  _parseOptions: ->
   @min = parseInt @opt.minute
   if not @min? or isNaN @min
@@ -33,6 +42,7 @@ class HourlyScheduler extends Base
     o =
      last: @last
      gap: @gap
+     key: @key
     @files.write @id, o
     @running = off
 

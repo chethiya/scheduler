@@ -9,7 +9,7 @@ class SchedulerBase extends Base
   @_parseOptions?()
   @running = off
 
-  @last = @gap = null
+  @last = @gap = @key = null
 
   next = @_nextTime()
   if next?
@@ -17,6 +17,7 @@ class SchedulerBase extends Base
    if times?
     @last = times.last
     @gap = times.gap
+    @key = times.key
    else
     @last = @_lastTime()
     @gap = next - @last
