@@ -37,7 +37,30 @@ class SchedulerBase extends Base
  _lastTime: ->
   throw new Error 'Sheduler::_nextTime() is not implemented'
 
- @listen 'check', ->
-  throw new Error 'Sheduler::_nextTime() is not implemented'
+ _update: ->
+  throw new Error 'Sheduler::_update() is not implemented'
+
+ @listen 'check', (Time) ->
+  if @running is on
+   return
+  if Time - @last >= @gap
+   @running = on
+   @_update()
+
+   done = =>
+    o =
+     last: @last
+     gap: @gap
+     key: @key
+    @files.write @id, o
+    @running = off
+
+   exe = =>
+    if @isDone
+     @handler done
+    else
+     @handler()
+     done()
+   setTimeout exe, 0
 
 module.exports = SchedulerBase

@@ -25,28 +25,9 @@ class HourlyScheduler extends Base
 
  _lastTime: -> @_nextTime() - HOUR
 
- @listen 'check', (Time) ->
-  if @running is on
-   return
-  if Time - @last >= @gap
-   @running = on
-   @last = @_lastTime()
-
-   done = =>
-    o =
-     last: @last
-     gap: @gap
-     key: @key
-    @files.write @id, o
-    @running = off
-
-   exe = =>
-    if @isDone
-     @handler done
-    else
-     @handler()
-     done()
-   setTimeout exe, 0
+ _update: ->
+  @last = @_lastTime()
+  return
 
 module.exports = (Types) ->
  Types.hourly = HourlyScheduler
