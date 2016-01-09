@@ -1,13 +1,14 @@
 Base = require './base'
+
 class IntervalScheduler extends Base
  @extend()
- @initialize (@id, @options, @handler, @timezone, @writer, @isDone) ->
-  @runOnStart = @options.runOnStart
-  @runOnStart ?= off
 
+ @initialize (@id, @options, @handler, @timezone, @writer, @isDone) ->
   @interval = @opt?.interval
   if not @interval?
    throw new Error "Scheduler missing interval in scheduler #{@id}"
+  @runOnStart = @opt.runOnStart
+  @runOnStart ?= off
   if @runOnStart is on
    setTimeout @on.run, 0
   @iid = setInterval @on.run, @interval
