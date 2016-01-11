@@ -18,12 +18,12 @@ class DailyScheduler extends Base
   @min = @min % 60
 
  _nextTime: ->
-  cur = new Date
+  cur = new Date (new Date).getTime() + @timeOffset
   next = new Date cur.getFullYear(), cur.getMonth(), cur.getDate(), @hour, @min
   time = next.getTime()
   if time <= cur.getTime()
    time += DAY
-  return time + @timeOffset
+  return time - @timeOffset
 
  _lastTime: -> @_nextTime() - DAY
 

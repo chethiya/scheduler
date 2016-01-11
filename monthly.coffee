@@ -20,22 +20,22 @@ class MonthlyScheduler extends Base
   @min = @min % 60
 
  _nextTime: ->
-  cur = new Date
+  cur = new Date (new Date).getTime() + @timeOffset
   next = new Date cur.getFullYear(), cur.getMonth(), @date, @hour, @min
   time = next.getTime()
   if time <= cur.getTime()
    next.setMonth next.getMonth() + 1
    time = next.getTime()
-  return time + @timeOffset
+  return time - @timeOffset
 
  _lastTime: ->
-  cur = new Date
+  cur = new Date (new Date).getTime() + @timeOffset
   last = new Date cur.getFullYear(), cur.getMonth(), @date, @hour, @min
   time = last.getTime()
   if time > cur.getTime()
    last.setMonth last.getMonth() - 1
    time = last.getTime()
-  return time + @timeOffset
+  return time - @timeOffset
 
  _update: ->
   next = @_nextTime()

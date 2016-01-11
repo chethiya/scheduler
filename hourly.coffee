@@ -14,14 +14,14 @@ class HourlyScheduler extends Base
   @min = @min % 60
 
  _nextTime: ->
-  d = new Date
+  d = new Date (new Date).getTime() + @timeOffset
   m = d.getMinutes()
   h = d.getHours()
   dd = new Date d.getFullYear(), d.getMonth(), d.getDate(), h, @min
   time = dd.getTime()
   if @min <= m
    time += HOUR
-  return time + @timeOffset
+  return time - @timeOffset
 
  _lastTime: -> @_nextTime() - HOUR
 

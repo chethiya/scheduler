@@ -6,15 +6,16 @@ Scheduler.addEvent 'event1',
   type: 'interval'
   options:
    interval: 5000
+   runOnStart: on
  }
  ->
-  console.log 'called 1 min interval'
+  console.log 'called interval'
 
 Scheduler.addEvent 'event2',
  {
   type: 'hourly'
   options:
-   minute: 38
+   minute: 24
  }
  ->
   console.log 'called hourly'
@@ -23,8 +24,8 @@ Scheduler.addEvent 'event_daily',
  {
   type: 'daily'
   options:
-   hour: 22
-   minute: 42
+   hour: 18
+   minute: 45
  }
  ->
   console.log 'called daily'
@@ -33,9 +34,9 @@ Scheduler.addEvent 'event_weekly',
  {
   type: 'weekly'
   options:
-   day: 'wed'
-   hour: 23
-   minute: 0
+   day: 'mon'
+   hour: 18
+   minute: 48
  }
  ->
   console.log 'called weekly'
@@ -44,9 +45,9 @@ Scheduler.addEvent 'event_monthly',
  {
   type: 'monthly'
   options:
-   date: 6
-   hour: 23
-   minute: 24
+   date: 11
+   hour: 18
+   minute: 54
  }
  ->
   console.log 'called monthly'

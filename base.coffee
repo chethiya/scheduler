@@ -4,7 +4,6 @@ class SchedulerBase extends Base
  @initialize (@id, @options, @handler, @timezone, @files, @isDone) ->
   @type = @options.type
   @timeOffset = (new Date()).getTimezoneOffset() * 60 * 1000 + @timezone
-  @timeOffset = -@timeOffset
   @opt = @options.options
   @_parseOptions?()
   @running = off

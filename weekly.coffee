@@ -40,13 +40,13 @@ class WeeklyScheduler extends Base
   @min = @min % 60
 
  _nextTime: ->
-  cur = new Date
+  cur = new Date (new Date).getTime() + @timeOffset
   dayAdd = (@day - cur.getDay() + 7) % 7
   next = new Date cur.getFullYear(), cur.getMonth(), cur.getDate(), @hour, @min
   time = next.getTime() + DAY * dayAdd
   if time <= cur.getTime()
    time += WEEK
-  return time + @timeOffset
+  return time - @timeOffset
 
  _lastTime: -> @_nextTime() - WEEK
 
