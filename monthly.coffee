@@ -19,28 +19,23 @@ class MonthlyScheduler extends Base
   @hour = @hour % 24
   @min = @min % 60
 
- _nextTime: ->
-  cur = new Date (new Date).getTime() + @timeOffset
+ _nextTime: (Time) ->
+  cur = new Date Time
   next = new Date cur.getFullYear(), cur.getMonth(), @date, @hour, @min
   time = next.getTime()
   if time <= cur.getTime()
    next.setMonth next.getMonth() + 1
    time = next.getTime()
-  return time - @timeOffset
+  return time
 
- _lastTime: ->
-  cur = new Date (new Date).getTime() + @timeOffset
+ _lastTime: (Time) ->
+  cur = new Date Time
   last = new Date cur.getFullYear(), cur.getMonth(), @date, @hour, @min
   time = last.getTime()
   if time > cur.getTime()
    last.setMonth last.getMonth() - 1
    time = last.getTime()
-  return time - @timeOffset
-
- _update: ->
-  next = @_nextTime()
-  @last = @_lastTime()
-  @gap = next - @last
+  return time
 
 module.exports = (Types) ->
  Types.monthly = MonthlyScheduler

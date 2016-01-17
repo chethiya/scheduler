@@ -39,19 +39,16 @@ class WeeklyScheduler extends Base
   @hour = @hour % 24
   @min = @min % 60
 
- _nextTime: ->
-  cur = new Date (new Date).getTime() + @timeOffset
+ _nextTime: (Time) ->
+  cur = new Date Time
   dayAdd = (@day - cur.getDay() + 7) % 7
   next = new Date cur.getFullYear(), cur.getMonth(), cur.getDate(), @hour, @min
   time = next.getTime() + DAY * dayAdd
   if time <= cur.getTime()
    time += WEEK
-  return time - @timeOffset
+  return time
 
- _lastTime: -> @_nextTime() - WEEK
-
- _update: ->
-  @last = @_lastTime()
+ _lastTime: (Time) -> (@_nextTime Time) - WEEK
 
 module.exports = (Types) ->
  Types.weekly = WeeklyScheduler

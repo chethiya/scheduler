@@ -17,18 +17,15 @@ class DailyScheduler extends Base
   @hour = @hour % 24
   @min = @min % 60
 
- _nextTime: ->
-  cur = new Date (new Date).getTime() + @timeOffset
+ _nextTime: (Time) ->
+  cur = new Date Time
   next = new Date cur.getFullYear(), cur.getMonth(), cur.getDate(), @hour, @min
   time = next.getTime()
   if time <= cur.getTime()
    time += DAY
-  return time - @timeOffset
+  return time
 
- _lastTime: -> @_nextTime() - DAY
-
- _update: ->
-  @last = @_lastTime()
+ _lastTime: (Time) -> (@_nextTime Time) - DAY
 
 module.exports = (Types) ->
  Types.daily = DailyScheduler

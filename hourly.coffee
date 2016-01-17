@@ -13,21 +13,17 @@ class HourlyScheduler extends Base
    throw new Error "Scheduler missing/invalid minute value in scheduler #{@id}"
   @min = @min % 60
 
- _nextTime: ->
-  d = new Date (new Date).getTime() + @timeOffset
+ _nextTime: (Time) ->
+  d = new Date Time
   m = d.getMinutes()
   h = d.getHours()
   dd = new Date d.getFullYear(), d.getMonth(), d.getDate(), h, @min
   time = dd.getTime()
   if @min <= m
    time += HOUR
-  return time - @timeOffset
+  return time
 
- _lastTime: -> @_nextTime() - HOUR
-
- _update: ->
-  @last = @_lastTime()
-  return
+ _lastTime: (Time) -> (@_nextTime Time) - HOUR
 
 module.exports = (Types) ->
  Types.hourly = HourlyScheduler
