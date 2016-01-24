@@ -20,6 +20,9 @@ class Files
 
  write: (id, json) ->
   data = JSON.stringify json
-  FS.writeFileSync (@_path id), data, encoding: 'utf8'
+  path = @_path id
+  tmp = "#{path}.tmp"
+  FS.writeFileSync tmp, data, encoding: 'utf8'
+  FS.renameSync tmp, path
 
 module.exports = Files
