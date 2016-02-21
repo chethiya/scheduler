@@ -16,12 +16,12 @@ class Scheduler extends Base
   @timezone = timezoneHours * 60 * 60 * 1000
   @interval ?= DEFAULT_CHECK_INTERVAL
   @events = []
-  Files = new Files @dir
+  @files = new Files @dir
 
  addEvent: (id, options, handler, isDone) ->
   type = options.type
   if Types[type]?
-   @events.push new Types[type] id, options, handler, @timezone, Files, isDone
+   @events.push new Types[type] id, options, handler, @timezone, @files, isDone
   else
    throw new Error "Invalid schedule event type #{type}"
 
