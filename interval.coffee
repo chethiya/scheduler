@@ -27,7 +27,7 @@ class IntervalScheduler extends Base
  _nextTime: -> null
  _lastTime: -> null
 
- @listen 'check', ->
+#  @listen 'check', ->
 
 module.exports = (Types) ->
  Types.interval = IntervalScheduler
